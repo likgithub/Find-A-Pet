@@ -1,0 +1,159 @@
+<!--
+Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="aws-cognito-sdk.min.js"></script>
+  <script src="amazon-cognito-identity.min.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.16.0.min.js"></script>
+  <!-- <script src="./app.js"></script> -->
+  <meta charset="UTF-8">
+  <title>Rekognition</title>
+</head>
+
+<body>
+  <!-- data tags -->
+  <div id="data"></div>
+  <!-- 
+  var dataInfo = document.getElementByClassName("data")
+  var animal_type = dataInfo.getAttribute("data-animal-type")
+  var breed = dataInfo.getAttribute("data-breed")
+ -->
+  <H1>Label Detector</H1>
+  <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*">
+  <p id="opResult"></p>
+</body>
+<script>
+  var invalidDogLabels = ["Animal", "Pet", "Canine", "Hound"];
+  var invalidCatLabels = ["Animal", "Pet", "Mammal"];
+  var r = [];
+  document.getElementById("fileToUpload").addEventListener("change", function (event) {
+    ProcessImage();
+    console.log("final arr",r);
+  }, false);
+  
+  //Calls DetectLabels API and shows estimated ages of detected faces
+  function DetectLabels(imageData) {
+    r = [];
+    AWS.region = "us-east-1";
+    var rekognition = new AWS.Rekognition();
+    var params = {
+      Image: {
+        Bytes: imageData
+      },
+      // Attributes: [
+      //   'ALL',
+      // ]
+      "MaxLabels": 5,
+      "MinConfidence": 90
+    };
+    rekognition.detectLabels(params, function (err, data) {
+      var results = new Array();
+      if (err) console.log(err, err.stack); // an error occurred
+      else {
+       var table = "<table><tr><th>Label</th><th>Confidence</th></tr>";
+        // show each face and build out estimated age table
+        const dataTags = document.getElementById('data');
+        //dataTags.setAttribute('class', 'data');
+
+        data.Labels.forEach(label => {
+          if(!invalidCatLabels.includes(label.Name) && !invalidDogLabels.includes(label.Name)){
+            console.log(`Label:      ${label.Name}`)
+            console.log(`Confidence: ${label.Confidence}`)
+            table += '<tr><td>' + label.Name +
+              '</td><td>' + label.Confidence + '</td></tr>';
+            r.push(label.Name);
+            console.log("push",r);
+
+            if(label.Name != "Cat" && label.Name != "Dog"){
+              dataTags.setAttribute('data-breed', label.Name);
+            }
+            else{
+              
+              dataTags.setAttribute('data-animal-type', label.Name);
+            }
+            
+            
+
+
+          }
+        })
+        table += "</table>";
+        document.getElementById("opResult").innerHTML = table;
+      }
+      console.log("detectLabels res",r);
+      // return r;
+    });
+  }
+  //Loads selected image and unencodes image bytes for Rekognition DetectLabels API
+  function ProcessImage() {
+    AnonLog();
+    var control = document.getElementById("fileToUpload");
+    var file = control.files[0];
+
+    // Load base64 encoded image 
+    var reader = new FileReader();
+    reader.onload = (function (theFile) {
+      return function (e) {
+        var img = document.createElement('img');
+        var image = null;
+        img.src = e.target.result;
+        var jpg = true;
+        try {
+          image = atob(e.target.result.split("data:image/jpeg;base64,")[1]);
+
+        } catch (e) {
+          jpg = false;
+        }
+        if (jpg == false) {
+          try {
+            image = atob(e.target.result.split("data:image/png;base64,")[1]);
+          } catch (e) {
+            alert("Not an image file Rekognition can process");
+            return;
+          }
+        }
+        //unencode image bytes for Rekognition DetectLabels API 
+        var length = image.length;
+        imageBytes = new ArrayBuffer(length);
+        var ua = new Uint8Array(imageBytes);
+        for (var i = 0; i < length; i++) {
+          ua[i] = image.charCodeAt(i);
+        }
+        //Call Rekognition  
+        // var finalResults = new Array();
+        DetectLabels(imageBytes);
+        console.log("first array",finalResults);
+        // if(finalResults.length > 0){
+        //   if(finalResults[0] != "Cat" || finalResults[0] != "Dog"){
+        //     var temp = finalResults[0];
+        //     finalResults[0] = finalResults[1];
+        //     finalResults[1] = temp;
+        //   }
+        // }
+        // console.log("final finalResults",finalResults);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+    // return finalResults;
+  }
+  //Provides anonymous log on to AWS services
+  function AnonLog() {
+    
+    // Configure the credentials provider to use your identity pool
+    AWS.config.region = 'us-east-1'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'us-east-1:2f45a8d7-dac5-4256-bf10-b463549781e4',
+    });
+    // Make the call to obtain credentials
+    AWS.config.credentials.get(function () {
+      // Credentials will be available when this function is called.
+      var accessKeyId = AWS.config.credentials.accessKeyId;
+      var secretAccessKey = AWS.config.credentials.secretAccessKey;
+      var sessionToken = AWS.config.credentials.sessionToken;
+    });
+  }
+</script>
+</html>

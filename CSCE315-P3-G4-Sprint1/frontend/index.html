@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pet-by-Picture</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    
+    <!--Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Duru+Sans|Actor' rel='stylesheet' type='text/css'>
+    
+    <!--Bootshape-->
+    <link href="css/bootshape.css" rel="stylesheet">
+
+    <!--Icons-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .boxed {
+      border: 1px solid gray;
+      background-color: aliceblue;
+      }
+
+      [type="file"] {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        padding: 0;
+        position: absolute !important;
+        white-space: nowrap;
+        width: 1px;
+      }
+
+      .title-box {
+        height: 3px; 
+        background-color: gray; 
+        text-align: center;
+        }
+      .title-outer {
+          background-color:rgb(230, 230, 230); 
+          position: relative; 
+          top: -0.7em;
+      }
+      .title-inner {
+          margin:0px 20px; 
+          font-size: 17.5px; 
+          font-weight:bold; 
+          color:rgb(100, 100, 100);
+      }
+
+      u {
+        text-decoration: underline;
+        color:dodgerblue;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation bar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span class="green">Pet-by</span>-Picture</a>
+        </div>
+        <nav role="navigation" class="collapse navbar-collapse navbar-right">
+          <ul class="navbar-nav nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li class="dropdown">
+              <a data-toggle="dropdown" href="#" class="dropdown-toggle">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Item 1</a></li>
+                <li class="active"><a href="#">Item 2</a></li>
+                <li><a href="#">Item 3</a></li>
+                <li class="divider"></li>
+                <li><a href="#">All Items</a></li>
+              </ul>
+            </li>
+            <li><a href="#welcome">About Us</a></li>
+            <li><a href="#upload">Upload your picture</a></li>
+            <li><a href="#result">Result</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div><!-- End Navigation bar -->
+
+    <!-- Slide gallery -->
+    <div class="header">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="img/gal1.jpg" alt="" style="width:1500px;height:600px;"> <!-- replace with cat/dog pic-->
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/gal2.jpg" alt="" style="width:1500px;height:600px;"> <!-- replace with cat/dog pic-->
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="img/gal3.jpg" alt="" style="width:1500px;height:600px;"> <!-- replace with cat/dog pic-->
+            <div class="carousel-caption">
+            </div>
+          </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div><!-- End Slide gallery -->
+
+    <h3 class="text-center">Our Gallery</h3>
+    <!-- Thumbnails -->
+    <div class="container thumbs">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="img/pic1.jpg" alt="" class="img-circle"> <!-- replace with cat/dog pic-->
+          <div class="caption">
+            <h3 class="text-center">Cat/Dog breed 1</h3>
+            <p class="text-center">Description 1</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="img/pic2.jpg" alt="" class="img-circle"> <!-- replace with cat/dog pic-->
+          <div class="caption">
+            <h3 class="text-center">cat/Dog breed 2</h3>
+            <p class="text-center">Description 2</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="img/pic3.jpg" alt="" class="img-circle"> <!-- replace with cat/dog pic-->
+          <div class="caption">
+            <h3 class="text-center">Cat/dog 3</h3>
+            <p class="text-center">Description 3</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Thumbnails -->
+
+    <!-- Content -->
+    <div class="container" id="welcome">
+      <h3 style="font-weight:bolder" class="text-center">What is Pet-by-Picture?</h3>
+      <p class="text-center">Description of the website</p> <!--Get info from the initial design-->
+    </div><!-- End Content -->
+
+    <!-- Upload picture-->
+    
+    <div class="container" id="upload">
+      <br>
+      <h3 style="font-weight:bolder" class="text-center">Let us help you find what you need</h3><br>
+      <div class="title-box">
+        <span class="title-outer">
+            <span style="font-size: larger; font-weight: bolder;" class="title-inner">Give us a name of a breed</span>
+        </span>
+      </div>
+
+      <div class="boxed">
+        <form class="text-center" method="POST" >
+          <br><i class="glyphicon glyphicon-cloud" style="font-size:24px;"></i>
+          <i class="fa fa-upload" style="font-size:24px"></i>
+          <i class="fa fa-file" style="font-size:24px"></i>
+          <i class="fa fa-file-image-o" style="font-size:24px"></i>
+          <!--Text-->
+          <h2>Give us a name of a type of animal (cat or dog)</h2>
+          <input type="text" placeholder="Input Cat or Dog" id="animal_name"><br><br>
+          <h2>Give us a name of a breed</h2>
+          <input type="text" name="breed_name" id="breed_name"><br><br>
+          
+
+          <!--Image-->
+          <input type="file" id="image" accept="image/*" >
+          <label for="image">Or <u>choose your files</u> </label><br><br>
+          <button type="button" onclick = " return getBreedInfo()" >Analyze </button><br><br>
+        </form>
+      </div>
+    </div>
+    <!--End upload picture-->
+    
+   
+    
+    <script>
+      function getBreedInfo() {
+        var breed_name = document.querySelector('#breed_name').value; 
+        var animal_name = document.querySelector('#animal_name').value;
+
+        //document.getElementById('demo1').innerHTML = breed_name;
+        //document.getElementById('demo2').innerHTML = animal_name;
+
+        //===================info=============================
+        const infoApp = document.getElementById('info');
+
+        const infoContainer = document.createElement('div');
+        infoContainer.setAttribute('class', 'container');
+
+        infoApp.appendChild(infoContainer);
+
+        var breed = breed_name;
+        var animal_type = animal_name;
+
+        //document.getElementById('demo1').innerHTML = breed;
+        //document.getElementById('demo2').innerHTML = animal_type;
+
+        var requestInfo = new XMLHttpRequest();
+        var urlInfo = "https://api.the" + animal_type + "api.com/v1/breeds/search?q=" + breed;
+        requestInfo.open('GET', urlInfo, true);
+        requestInfo.setRequestHeader('Content-Type', 'application/json');
+        if (animal_type == "dog") {
+          requestInfo.setRequestHeader('x-api-key', 'bdcbf431-4308-4689-b9da-d2d03637e1dc');
+        }
+        else {
+          requestInfo.setRequestHeader('x-api-key', 'eee797a0-e404-465c-9ad2-dc275ec7ae2b');
+        }
+        requestInfo.onload = function () {
+          // Begin accessing JSON data here
+          var data = JSON.parse(this.response);
+          console.log(requestInfo.statusText);
+          if (requestInfo.status == 200) {
+            data.forEach(resp => {
+                const card = document.createElement('div');
+                card.setAttribute('class', 'information');
+
+                //name
+                const h1 = document.createElement('h1');
+                h1.textContent = resp.name;
+                
+                //breed
+                const p0 = document.createElement('p');
+                p0.textContent = resp.bred_for;
+
+
+                //life span
+                const p1 = document.createElement('p');
+                p1.textContent = resp.life_span;
+
+                //temperament
+                const p2 = document.createElement('p');
+                p2.textContent = resp.temperament;
+
+                infoContainer.appendChild(card);
+                card.appendChild(h1);
+                card.appendChild(p0);
+                card.appendChild(p1);
+                card.appendChild(p2);
+            });
+            //error
+          } else {
+            const errorMessage = document.createElement('marquee');
+            errorMessage.textContent = `Gah, it is not working!`;
+            infoApp.appendChild(errorMessage);
+          }
+        }
+        requestInfo.send();
+        //===================image=============================
+        const imagesApp = document.getElementById('images');
+
+        const imagesContainer = document.createElement('div');
+        imagesContainer.setAttribute('class', 'container');
+
+        imagesApp.appendChild(imagesContainer);
+
+        function createXHRequestWithHeaders (method, url) {
+          var request = new XMLHttpRequest();
+          request.open(method, url, true);
+          request.setRequestHeader('Content-Type', 'application/json');
+          if (animal_type == "dog") {
+            request.setRequestHeader('x-api-key', 'bdcbf431-4308-4689-b9da-d2d03637e1dc');
+          }
+          else {
+            request.setRequestHeader('x-api-key', 'eee797a0-e404-465c-9ad2-dc275ec7ae2b');
+          }
+          request.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response);
+            if (request.status == 200) {
+              data.forEach(animal => {
+                const card = document.createElement('div');
+                card.setAttribute('class', 'image');
+
+                const h1 = document.createElement('h1');
+                //h1.textContent = animal.breeds[0].name;
+
+                const img = document.createElement('img');
+                img.setAttribute('src', animal.url);
+                img.setAttribute('height', '500px');
+
+                imagesContainer.appendChild(card);
+                card.appendChild(h1);
+                card.appendChild(img);
+              });
+            } else {
+              const errorMessage = document.createElement('marquee');
+              errorMessage.textContent = `Gah, it's not working!`;
+              imagesApp.appendChild(errorMessage);
+            }
+          }
+          request.send();
+        }
+
+        function createXHRequest (method, url) {
+          var request = new XMLHttpRequest();
+          request.open(method, url, true);
+          request.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response);
+            if (request.status == 200) {
+
+              for (var i = 0; i < 1; i++) {
+                const card = document.createElement('div');
+                card.setAttribute('class', 'image');
+
+                const h1 = document.createElement('h4');
+                h1.textContent = breed;
+                
+                const img = document.createElement('img');
+                img.setAttribute('src', data.message[i]);
+                img.setAttribute('height', '500px');
+
+                imagesContainer.appendChild(card);
+                card.appendChild(h1);
+                card.appendChild(img);
+
+                
+              }
+            } else {
+              const errorMessage = document.createElement('marquee');
+              errorMessage.textContent = `Gah, it's not working!`;
+              imagesApp.appendChild(errorMessage);
+            }
+          }
+          request.send();
+        }
+
+        var requestImages1 = new XMLHttpRequest();
+        var urlImages1 = "https://api.the" + animal_type + "api.com/v1/breeds/search?q=" + breed;
+        requestImages1.open('GET', urlImages1, true);
+        requestImages1.setRequestHeader('Content-Type', 'application/json');
+        if (animal_type == "dog") {
+          requestImages1.setRequestHeader('x-api-key', 'bdcbf431-4308-4689-b9da-d2d03637e1dc');
+        }
+        else {
+          requestImages1.setRequestHeader('x-api-key', 'eee797a0-e404-465c-9ad2-dc275ec7ae2b');
+        }
+        requestImages1.onload = function () {
+          // Begin accessing JSON data here
+          var data = JSON.parse(this.response);
+          console.log(requestImages1.status);
+          if (requestImages1.status == 200) {
+            data.forEach(resp => {
+              var _url = "https://api.the" + animal_type + "api.com/v1/images/search?breed_id=" + resp.id + "&format=json&limit=20";
+              createXHRequestWithHeaders('GET', _url);
+            });
+          } else {
+            const errorMessage = document.createElement('marquee');
+            errorMessage.textContent = `Gah, it is not working!`;
+            imagesApp.appendChild(errorMessage);
+          }
+        }
+        requestImages1.send();
+
+        if (animal_type == "dog") {
+          var requestImages2 = new XMLHttpRequest();
+          var urlImages2 = "https://dog.ceo/api/breeds/list/all";
+          requestImages2.open('GET', urlImages2, true);
+          requestImages2.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response);
+            console.log(data.message);
+            console.log(requestImages2.status);
+            if (requestImages2.status == 200) {
+                var breedlist = breed.split(" ");
+                var _url;
+                if (breedlist.length == 1) {
+                  _url = "https://dog.ceo/api/breed/" + breedlist[0] + "/images/random/5";
+                }
+                else {
+                  if (data.message[breedlist[1]].includes(breedlist[0])) {
+                    _url = "https://dog.ceo/api/breed/" + breedlist[1] + "/" + breedlist[0] + "/images/random/5";
+                  }
+                  else {
+                    _url = "https://dog.ceo/api/breed/" + breedlist[0] + "/" + breedlist[1] + "/images/random/5";
+                  }
+                }
+                createXHRequest('GET', _url);
+            } else {
+              const errorMessage = document.createElement('marquee');
+              errorMessage.textContent = `Gah, it is not working!`;
+              imagesApp.appendChild(errorMessage);
+            }
+          }
+          requestImages2.send();
+        }
+
+        //===================adoption===========================
+        
+        const adoptsApp = document.getElementById('adopts');
+
+        const adoptsContainer = document.createElement('div');
+        adoptsContainer.setAttribute('class', 'container');
+
+        adoptsApp.appendChild(adoptsContainer);
+
+        var zip = 77840;
+
+        var pf = new petfinder.Client({apiKey: "E1J8gff3nnNTGgYrWZFkMlsQACitgkkvEealRnWttvYRjZmapT", secret: "BwZWVHUMd8HfMcPXujKWuA5RKfggtV4R8K2SxpFb"});
+
+        pf.animal.search({
+          type: animal_type,
+          breed: breed,
+          location: zip,
+          distance: 100,
+        }).then(function (response) {
+          console.log(response.data)
+          response.data.animals.forEach(animal => {
+            const card = document.createElement('div');
+            card.setAttribute('class', 'adoption');
+
+            const h1 = document.createElement('h4');
+            h1.textContent = animal.name;
+
+            const p0 = document.createElement('p');
+            var text = animal.description;
+            if (text != null) {
+              text = text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+            }
+            p0.textContent = text;
+
+            const url = document.createElement('a');
+            url.setAttribute('href', animal.url)
+            url.textContent = `More Info`;
+
+            adoptsContainer.appendChild(card);
+            card.appendChild(h1);
+            card.appendChild(p0);
+            card.appendChild(url);
+          });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+      }
+    </script>
+    
+    <!-- Content -->
+    <div id="result" class="container" >
+      <h3 style="font-weight:bolder" class="text-center">Result</h3>
+
+      <!-----------Result -->
+      <p id="demo1"></p>
+      <p id="demo2"></p>
+      <div id="info">
+        <h1>Breed information</h1>
+      </div>
+      <div id="images">
+        <h1>Images</h1>
+      </div>
+      <div id="adopts">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/@petfinder/petfinder-js/dist/petfinder.min.js"></script>
+        <h1>Adoption Availibility</h1>
+      </div>
+
+
+      <!-----------End Result-------------- -->
+      <br>
+    </div><!-- End Content -->
+
+    <!-- Footer -->
+    <div class="footer text-center">
+        <br>
+    </div><!-- End Footer -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- // <script src="https://code.jquery.com/jquery.js"></script> -->
+    <script src="js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootshape.js"></script>
+    <!-- Append info to Result ID -->
+    <script src="../Backend/Breed Info/scripts.js"></script>
+  </body>
+</html>
